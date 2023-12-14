@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxn5gvq5submd"]
+
+[ext_resource type="Texture2D" uid="uid://ckp0u0kx1sx2p" path="res://Textures/TitleBackground.png" id="1_i1man"]
+[ext_resource type="Texture2D" uid="uid://dx7y8p0msh5l4" path="res://Textures/Portal.png" id="2_m0e3n"]
+[ext_resource type="Script" path="res://Scripts/BackButton.gd" id="3_nbxe2"]
+
+[node name="Instructions" type="Node2D"]
+
+[node name="TitleBackground" type="Sprite2D" parent="."]
+position = Vector2(606, 399)
+scale = Vector2(22.2244, 16.6016)
+texture = ExtResource("1_i1man")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 104.0
+offset_top = 21.0
+offset_right = 367.0
+offset_bottom = 73.0
+scale = Vector2(3.78447, 2.93597)
+text = "Get to the portals in all 3 areas! 
+Defeat the bosses!"
+
+[node name="Portal" type="Sprite2D" parent="."]
+position = Vector2(1073, 91)
+scale = Vector2(3.72805, 4.57919)
+texture = ExtResource("2_m0e3n")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 308.0
+offset_right = 383.0
+offset_bottom = 334.0
+scale = Vector2(3.78447, 2.93597)
+text = "A - Walk Left"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 550.0
+offset_top = 308.0
+offset_right = 813.0
+offset_bottom = 334.0
+scale = Vector2(3.78447, 2.93597)
+text = "D - Walk Right"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 104.0
+offset_top = 389.0
+offset_right = 367.0
+offset_bottom = 415.0
+scale = Vector2(3.78447, 2.93597)
+text = "Space - Jump"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 526.0
+offset_top = 394.0
+offset_right = 789.0
+offset_bottom = 420.0
+scale = Vector2(3.78447, 2.93597)
+text = "Left Click - Fire Bullet"
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 214.0
+offset_right = 334.0
+offset_bottom = 240.0
+scale = Vector2(3.78447, 2.93597)
+text = "Avoid/Defeat Dark Sand Creatures!"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 4.0
+offset_top = 536.0
+offset_right = 49.0
+offset_bottom = 567.0
+scale = Vector2(3.42413, 3.54618)
+text = "Back"
+script = ExtResource("3_nbxe2")
+
+[connection signal="button_down" from="Button2" to="Button2" method="_on_button_down"]

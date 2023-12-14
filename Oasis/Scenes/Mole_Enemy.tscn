@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccg7s48aqk3pv"]
+
+[ext_resource type="Script" path="res://Scripts/Test_Enemy.gd" id="1_7uo5u"]
+[ext_resource type="Texture2D" uid="uid://dy1kvxwopoued" path="res://Textures/MoleFrame1.png" id="1_v73ct"]
+[ext_resource type="Texture2D" uid="uid://cu6260h4ak7tg" path="res://Textures/MoleFrame2.png" id="2_dyy04"]
+[ext_resource type="Texture2D" uid="uid://2ldkibp3na5o" path="res://Textures/MoleFrame3.png" id="3_isaqu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3rfxb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v73ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dyy04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_v73ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_isaqu")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k642t"]
+size = Vector2(129, 123)
+
+[node name="Mole_Enemy" type="Area2D"]
+scale = Vector2(1.64, 1.48)
+script = ExtResource("1_7uo5u")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.03478, 2)
+sprite_frames = SubResource("SpriteFrames_3rfxb")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_k642t")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

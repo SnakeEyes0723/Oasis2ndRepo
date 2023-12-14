@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://g1jcj8vivgdc"]
+
+[ext_resource type="PackedScene" uid="uid://dlox5lqxrreh1" path="res://Scenes/Player.tscn" id="1_1gxx7"]
+[ext_resource type="Texture2D" uid="uid://6wtjqr3sl67x" path="res://icon.svg" id="2_8ockm"]
+[ext_resource type="PackedScene" uid="uid://f51brdex3dbv" path="res://Scenes/RegAmmoPickup.tscn" id="3_yjnig"]
+[ext_resource type="PackedScene" uid="uid://da2p7cing124i" path="res://Scenes/Test_Enemy.tscn" id="4_l3xf0"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_rmtxs"]
+size = Vector2(1000, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sovli"]
+size = Vector2(999, 149)
+
+[node name="GameWorld" type="Node2D"]
+position = Vector2(-2, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_1gxx7")]
+position = Vector2(532, 240)
+
+[node name="ProjSpawn" type="Area2D" parent="Player"]
+position = Vector2(43, -85)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/ProjSpawn"]
+position = Vector2(1, -17)
+scale = Vector2(0.366384, 0.304688)
+texture = ExtResource("2_8ockm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(541, 444)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+mesh = SubResource("QuadMesh_rmtxs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_sovli")
+
+[node name="RegAmmoPickup" parent="." instance=ExtResource("3_yjnig")]
+position = Vector2(791, 304)
+
+[node name="Test_Enemy" parent="." instance=ExtResource("4_l3xf0")]
+position = Vector2(959, 286)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://f51brdex3dbv"]
+
+[ext_resource type="Script" path="res://Scripts/RegAmmoPickup.gd" id="1_amxpd"]
+[ext_resource type="Texture2D" uid="uid://6wtjqr3sl67x" path="res://icon.svg" id="2_2qg5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haaih"]
+size = Vector2(23, 72)
+
+[node name="RegAmmoPickup" type="Area2D" groups=["RegAmmoPickup"]]
+script = ExtResource("1_amxpd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.148438, 0.554688)
+texture = ExtResource("2_2qg5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_haaih")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

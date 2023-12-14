@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4x1lk10od5wb"]
+
+[ext_resource type="Script" path="res://Scripts/BossProjectile.gd" id="1_3lsqg"]
+[ext_resource type="Texture2D" uid="uid://7ilbq2n7dkm7" path="res://Textures/BossProjectileFrame1.png" id="1_bi8qy"]
+[ext_resource type="Texture2D" uid="uid://c3ldyuhpahk7i" path="res://Textures/BossProjectileFrame2.png" id="2_44vwp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okvo3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bi8qy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_44vwp")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1m2r"]
+size = Vector2(46.3474, 38)
+
+[node name="BossProjectile" type="Area2D"]
+script = ExtResource("1_3lsqg")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, -15)
+scale = Vector2(1.89031, 1.57)
+sprite_frames = SubResource("SpriteFrames_okvo3")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Bullet"]]
+position = Vector2(-5.5, -22)
+scale = Vector2(1.01408, 1)
+shape = SubResource("RectangleShape2D_f1m2r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

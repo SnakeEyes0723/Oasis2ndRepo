@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6oago0byfmpg"]
+
+[ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_anobc"]
+[ext_resource type="Texture2D" uid="uid://xjupyyfqqy87" path="res://Textures/BossFrame1.png" id="1_qttn7"]
+[ext_resource type="Texture2D" uid="uid://ce0ulansp35dd" path="res://Textures/BossFrame2.png" id="2_se67h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_132cr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qttn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_se67h")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvu5t"]
+size = Vector2(67, 123)
+
+[node name="Boss" type="Area2D"]
+script = ExtResource("1_anobc")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.03478, 2)
+sprite_frames = SubResource("SpriteFrames_132cr")
+animation = &"run"
+frame = 1
+frame_progress = 0.0232853
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_hvu5t")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,192 @@
+[gd_scene load_steps=15 format=3 uid="uid://bktlwfpqxjkp6"]
+
+[ext_resource type="PackedScene" uid="uid://dlox5lqxrreh1" path="res://Scenes/Player.tscn" id="1_p3gmg"]
+[ext_resource type="Texture2D" uid="uid://djv6ovj0uh27l" path="res://Textures/HubDoor.png" id="1_t45pe"]
+[ext_resource type="Texture2D" uid="uid://6wtjqr3sl67x" path="res://icon.svg" id="2_8vleo"]
+[ext_resource type="Texture2D" uid="uid://d1pm3csp457uy" path="res://Textures/Tech Tile.png" id="2_cymr1"]
+[ext_resource type="Script" path="res://Scripts/CaveGate.gd" id="5_2lw37"]
+[ext_resource type="Script" path="res://Scenes/Museum_Gate.gd" id="6_7ler8"]
+[ext_resource type="Script" path="res://Scripts/MuseumEntrance.gd" id="6_skjsi"]
+[ext_resource type="Script" path="res://Scripts/TheaterEntrance.gd" id="7_002p7"]
+[ext_resource type="Script" path="res://Scenes/TheaterGate.gd" id="7_b67b4"]
+[ext_resource type="Script" path="res://Scripts/CaveEntrance.gd" id="8_hvp8g"]
+[ext_resource type="AudioStream" uid="uid://cd46ugsrdbwid" path="res://Sounds/zapsplat_nature_wind_strong_stormy_inside_or_cave_pov_98003.mp3" id="9_2gjsb"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_a4efi"]
+size = Vector2(1000, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2lur"]
+size = Vector2(999, 149)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoem0"]
+
+[node name="Main_Hub" type="Node2D"]
+
+[node name="HubDoor" type="Sprite2D" parent="."]
+position = Vector2(745, 365)
+scale = Vector2(24.0221, 18.6791)
+texture = ExtResource("1_t45pe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(343, 574)
+scale = Vector2(0.687241, 1)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+mesh = SubResource("QuadMesh_a4efi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_t2lur")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("2_cymr1")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="Player" parent="." instance=ExtResource("1_p3gmg")]
+position = Vector2(532, 485)
+
+[node name="ProjSpawn" type="Area2D" parent="Player"]
+visible = false
+position = Vector2(43, -85)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/ProjSpawn"]
+position = Vector2(1, -17)
+scale = Vector2(0.366384, 0.304688)
+texture = ExtResource("2_8vleo")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(574, 78)
+scale = Vector2(1.3456, 1)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D2"]
+mesh = SubResource("QuadMesh_a4efi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_t2lur")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("2_cymr1")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1065, 575)
+scale = Vector2(0.472301, 1)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D3"]
+mesh = SubResource("QuadMesh_a4efi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_t2lur")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("2_cymr1")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-62, 273)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(777, 575)
+scale = Vector2(0.472301, 1)
+script = ExtResource("5_2lw37")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D5"]
+mesh = SubResource("QuadMesh_a4efi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_t2lur")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("2_cymr1")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-28, 401)
+rotation = 1.5708
+scale = Vector2(0.472301, 1)
+script = ExtResource("6_7ler8")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D6"]
+mesh = SubResource("QuadMesh_a4efi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_t2lur")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D6"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("2_cymr1")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(1177, 379)
+rotation = 1.5708
+scale = Vector2(0.472301, 1)
+script = ExtResource("7_b67b4")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D7"]
+mesh = SubResource("QuadMesh_a4efi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_t2lur")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D7"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("2_cymr1")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-69, 0)
+script = ExtResource("6_skjsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(15, 324)
+scale = Vector2(6.02866, 17.2251)
+shape = SubResource("RectangleShape2D_aoem0")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(1190, 3)
+script = ExtResource("7_002p7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(15, 324)
+scale = Vector2(6.02866, 17.2251)
+shape = SubResource("RectangleShape2D_aoem0")
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2(740, 461)
+scale = Vector2(1.12, 0.599999)
+script = ExtResource("8_hvp8g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(15, 324)
+scale = Vector2(6.02866, 17.2251)
+shape = SubResource("RectangleShape2D_aoem0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_2gjsb")
+autoplay = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_body_entered"]

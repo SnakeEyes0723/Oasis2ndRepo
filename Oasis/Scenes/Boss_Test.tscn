@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1vt3yu1j5xdt"]
+
+[ext_resource type="Texture2D" uid="uid://d1pm3csp457uy" path="res://Textures/Tech Tile.png" id="1_uixy0"]
+[ext_resource type="PackedScene" uid="uid://b6oago0byfmpg" path="res://Scenes/Boss.tscn" id="2_ag133"]
+[ext_resource type="PackedScene" uid="uid://dlox5lqxrreh1" path="res://Scenes/Player.tscn" id="3_dm8sc"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="3_gbt5m"]
+[ext_resource type="AudioStream" uid="uid://ct40qk6lv457c" path="res://Sounds/music_zapsplat_the_boss.mp3" id="5_ehwfu"]
+[ext_resource type="AudioStream" uid="uid://dabb0ockc3bol" path="res://Sounds/animals_insect_chirp_vocalization_scared_002.mp3" id="6_glkjw"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_3p7af"]
+size = Vector2(1000, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmkjn"]
+size = Vector2(999, 149)
+
+[sub_resource type="Curve2D" id="Curve2D_8dic8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1371.77, 388.711, 0, 0, 0, 0, 1628.42, 451.25, 0, 0, 0, 0, 1929.04, 388.711, 0, 0, 0, 0, 1371.77, 388.711)
+}
+point_count = 4
+
+[node name="Boss_Test" type="Node2D"]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(501, 570)
+scale = Vector2(1.3456, 1)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D3"]
+visible = false
+mesh = SubResource("QuadMesh_3p7af")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_cmkjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture_repeat = 2
+scale = Vector2(6.75258, 2.58455)
+texture = ExtResource("1_uixy0")
+region_enabled = true
+region_rect = Rect2(-1.25, -1.937, 148, 69)
+
+[node name="Player" parent="." instance=ExtResource("3_dm8sc")]
+position = Vector2(-127, 471)
+
+[node name="ProjSpawn" type="Area2D" parent="Player"]
+position = Vector2(43, -85)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -68)
+
+[node name="Boss" type="Node2D" parent="."]
+position = Vector2(77, -185)
+script = ExtResource("3_gbt5m")
+
+[node name="Path2D" type="Path2D" parent="Boss"]
+position = Vector2(-3558, -886)
+scale = Vector2(2.71429, 2.94737)
+curve = SubResource("Curve2D_8dic8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Boss/Path2D"]
+position = Vector2(1371.77, 388.711)
+rotates = false
+
+[node name="Boss" parent="Boss/Path2D/PathFollow2D" instance=ExtResource("2_ag133")]
+position = Vector2(28.5984, 2.14616)
+
+[node name="BossProjSpawn" type="Area2D" parent="Boss/Path2D/PathFollow2D/Boss"]
+position = Vector2(1.10532, 59.375)
+scale = Vector2(0.368421, 0.339286)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Boss/Path2D/PathFollow2D/Boss"]
+position = Vector2(-89.5284, -90.2502)
+scale = Vector2(0.36842, 0.339286)
+stream = ExtResource("5_ehwfu")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Boss/Path2D/PathFollow2D/Boss"]
+stream = ExtResource("6_glkjw")
+
+[connection signal="body_entered" from="Boss/Path2D/PathFollow2D/Boss" to="Boss/Path2D/PathFollow2D/Boss" method="_on_body_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://pjlh3uls7nws"]
+
+[ext_resource type="Texture2D" uid="uid://ckp0u0kx1sx2p" path="res://Textures/TitleBackground.png" id="1_4bl8i"]
+[ext_resource type="Script" path="res://Scripts/BackButton.gd" id="2_s8bdn"]
+[ext_resource type="Texture2D" uid="uid://b1gwkba1tun7b" path="res://Textures/WinText.png" id="3_1ovi8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TitleBackground" type="Sprite2D" parent="."]
+position = Vector2(544, 309)
+scale = Vector2(-21.0297, 13.479)
+texture = ExtResource("1_4bl8i")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 398.0
+offset_top = 478.0
+offset_right = 463.0
+offset_bottom = 509.0
+scale = Vector2(4.48, 3.8)
+text = "To Title"
+script = ExtResource("2_s8bdn")
+
+[node name="WinText" type="Sprite2D" parent="."]
+position = Vector2(526, 359)
+scale = Vector2(11.72, 9.68)
+texture = ExtResource("3_1ovi8")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
